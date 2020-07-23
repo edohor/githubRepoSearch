@@ -14,7 +14,8 @@ Possible improvements:
 - table pagination
 - sorting repositories by name or date (eg. last created or last updated)
 - search data in table
-- table hidden in mobile view (show only link to repo list) and reduce number of columns for smaller viewes (remove description or make repo neme a link to remove link column)
+- table hidden in mobile view (show only link to repo list) and reduce number of columns for smaller views (remove description or make repo neme a link to remove link column)
 - add spinner of sorts and render all info on the page at once for larger list of repos
 - persist data locally
+- code architecture improvements (creating and importing separate files for individual components)
 - design improvements
