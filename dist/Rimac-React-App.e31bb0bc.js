@@ -32389,12 +32389,10 @@ var Home = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "search", function () {
-      console.log("search", _this.state.search);
       fetch('https://api.github.com/users/' + _this.state.search).then(function (res) {
         return res.json();
       }).then(function (result) {
-        console.log("result = ", result);
-
+        // console.log("result = ", result);
         if (result.message === "Not Found") {
           _this.setState({
             data: []
@@ -32418,8 +32416,7 @@ var Home = /*#__PURE__*/function (_Component) {
             search: ""
           });
         }
-      }, function (error) {
-        console.log("error = ", error);
+      }, function (error) {// console.log("error = ", error);
       });
     });
 
@@ -32436,47 +32433,33 @@ var Home = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      console.log("[componentDidMount] this.props = ", this.props);
-      console.log("[componentDidMount] this.props.history.location.state = ", this.props.history.location.state);
-
       if (this.props.history.location.state !== undefined) {
         fetch('https://api.github.com/users/' + this.props.history.location.state.userId).then(function (res) {
           return res.json();
         }).then(function (result) {
-          console.log("result = ", result);
-
+          // console.log("result = ", result);
           _this2.setUserInfo(result);
-        }, function (error) {
-          console.log("repos error = ", error);
+        }, function (error) {// console.log("repos error = ", error);
         });
       } else if (this.props.history.location.pathname !== "/") {
-        console.log("[componentDidMount] this.props.history.location.pathname = ", this.props.history.location.pathname);
-
         var _pathname = this.props.history.location.pathname.toString();
-
-        console.log("[componentDidMount] pathname = ", _pathname);
 
         var search = _pathname.slice(_pathname.lastIndexOf("/"));
 
-        console.log("[componentDidMount] substring = ", search);
         fetch('https://api.github.com/users' + search).then(function (res) {
           return res.json();
         }).then(function (result) {
-          console.log("result = ", result);
-
+          // console.log("result = ", result);
           _this2.setUserInfo(result);
-        }, function (error) {
-          console.log("repos error = ", error);
+        }, function (error) {// console.log("repos error = ", error);
         });
       } else {
         fetch('https://api.github.com/users/example').then(function (res) {
           return res.json();
         }).then(function (result) {
-          console.log("result = ", result);
-
+          // console.log("result = ", result);
           _this2.setUserInfo(result);
-        }, function (error) {
-          console.log("repos error = ", error);
+        }, function (error) {// console.log("repos error = ", error);
         });
       }
     }
@@ -32486,41 +32469,34 @@ var Home = /*#__PURE__*/function (_Component) {
       var _this3 = this;
 
       if (this.props.location.pathname !== pathname) {
-        console.log("componentDidUpdate this.props.location.pathname !== pathname");
         pathname = this.props.location.pathname;
 
         if (this.props.history.location.state !== undefined) {
-          console.log("componentDidUpdate first");
           this.setState({
             search: ""
           });
           fetch('https://api.github.com/users/' + this.props.history.location.state.userId).then(function (res) {
             return res.json();
           }).then(function (result) {
-            console.log("result = ", result);
-
+            // console.log("result = ", result);
             _this3.setUserInfo(result);
-          }, function (error) {
-            console.log("repos error = ", error);
+          }, function (error) {// console.log("repos error = ", error);
           });
         } else if (this.props.history.location.state === undefined) {
-          console.log("componentDidUpdate second");
           this.setState({
             search: ""
           });
           fetch('https://api.github.com/users/example').then(function (res) {
             return res.json();
           }).then(function (result) {
-            console.log("result = ", result);
-
+            // console.log("result = ", result);
             if (result.message === undefined) {
               _this3.setUserInfo(result);
             } else {
-              console.log("ERROR");
-              userInfo = "An Error occured. Please try again."; // this.forceUpdate();
+              // console.log("ERROR");
+              userInfo = "An Error occured. Please try again.";
             }
-          }, function (error) {
-            console.log("repos error = ", error);
+          }, function (error) {// console.log("repos error = ", error);
           });
         }
       }
@@ -32528,7 +32504,6 @@ var Home = /*#__PURE__*/function (_Component) {
   }, {
     key: "getRepos",
     value: function getRepos(repos) {
-      console.log("repos = ", repos);
       this.setState({
         repos: repos
       });
@@ -32538,24 +32513,19 @@ var Home = /*#__PURE__*/function (_Component) {
     value: function setUserInfo(userInfo) {
       var _this4 = this;
 
-      console.log("repos userInfo", userInfo);
       this.setState({
         data: userInfo
       });
-      console.log("repos userInfo.repos_url", userInfo.repos_url);
 
       if (userInfo.repos_url !== undefined) {
-        console.log("userInfo.repos_url !== undefined", userInfo.repos_url !== undefined);
         fetch(userInfo.repos_url).then(function (res) {
           return res.json();
         }).then(function (result) {
-          console.log("repos result = ", result);
-
+          // console.log("repos result = ", result);
           if (result.message === "Not Found") {} else {
             _this4.getRepos(result);
           }
-        }, function (error) {
-          console.log("repos error = ", error);
+        }, function (error) {// console.log("repos error = ", error);
         });
       } else if (result.message === "API rate limit exceeded for 176.62.6.130. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)") {
         userInfo = "An Error occured. Please try again.";
@@ -32576,8 +32546,6 @@ var Home = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this5 = this;
 
-      console.log("this.state = ", this.state);
-      console.log("this.props = ", this.props);
       var userInfo = null;
       var repos = [];
       var repoList = null;
@@ -32589,7 +32557,6 @@ var Home = /*#__PURE__*/function (_Component) {
           Object.assign(repos, _this5.state.repos);
         });
         var counter = 0;
-        console.log("[render] repos = ", repos);
         repoList = repos.map(function (r) {
           counter++;
           return /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", {
@@ -32675,8 +32642,6 @@ var Home = /*#__PURE__*/function (_Component) {
         className: "searchForm",
         onKeyDown: function onKeyDown(e) {
           if (e.key === "Enter") {
-            console.log("ENTER");
-
             _this5.search();
 
             e.preventDefault();

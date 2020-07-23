@@ -16,56 +16,48 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        console.log("[componentDidMount] this.props = ", this.props);
-        console.log("[componentDidMount] this.props.history.location.state = ", this.props.history.location.state);
-
         if(this.props.history.location.state !== undefined){
             fetch('https://api.github.com/users/' + this.props.history.location.state.userId)
                 .then(res => res.json())
                 .then(
                     (result) => {
-                        console.log("result = ", result);
+                        // console.log("result = ", result);
                         this.setUserInfo(result);
                     },
                     (error) => {
-                        console.log("repos error = ", error);
+                        // console.log("repos error = ", error);
                     })           
         } else if(this.props.history.location.pathname !== "/"){
-            console.log("[componentDidMount] this.props.history.location.pathname = ", this.props.history.location.pathname);
             let pathname = this.props.history.location.pathname.toString();
-            console.log("[componentDidMount] pathname = ", pathname);
             let search = pathname.slice(pathname.lastIndexOf("/"));
-            console.log("[componentDidMount] substring = ", search);
             fetch('https://api.github.com/users' + search)
                 .then(res => res.json())
                 .then(
                     (result) => {
-                        console.log("result = ", result);
+                        // console.log("result = ", result);
                         this.setUserInfo(result);
                     },
                     (error) => {
-                        console.log("repos error = ", error);
+                        // console.log("repos error = ", error);
                     })           
         } else {
             fetch('https://api.github.com/users/example')
                 .then(res => res.json())
                 .then(
                     (result) => {
-                        console.log("result = ", result);
+                        // console.log("result = ", result);
                         this.setUserInfo(result);
                     },
                     (error) => {
-                        console.log("repos error = ", error);
+                        // console.log("repos error = ", error);
                     }) 
         }
     }
 
     componentDidUpdate() {
         if(this.props.location.pathname !== pathname){
-            console.log("componentDidUpdate this.props.location.pathname !== pathname");
             pathname = this.props.location.pathname;
             if(this.props.history.location.state !== undefined){
-                console.log("componentDidUpdate first");
                 
                 this.setState({
                     search: ""
@@ -75,15 +67,14 @@ class Home extends Component {
                     .then(res => res.json())
                     .then(
                         (result) => {
-                            console.log("result = ", result);
+                            // console.log("result = ", result);
                             this.setUserInfo(result);
                         },
                         (error) => {
-                            console.log("repos error = ", error);
+                            // console.log("repos error = ", error);
                         }) 
                             
             } else if (this.props.history.location.state === undefined) {
-                console.log("componentDidUpdate second");
                 
                 this.setState({
                     search: ""
@@ -93,43 +84,38 @@ class Home extends Component {
                     .then(res => res.json())
                     .then(
                         (result) => {
-                            console.log("result = ", result);
+                            // console.log("result = ", result);
                             if(result.message === undefined){
                                 this.setUserInfo(result);
                             } else {
-                                console.log("ERROR");
+                                // console.log("ERROR");
                                 userInfo = "An Error occured. Please try again."
-                                // this.forceUpdate();
                             }
                         },
                         (error) => {
-                            console.log("repos error = ", error);
+                            // console.log("repos error = ", error);
                         }) 
             }
         }
     }
 
     getRepos(repos) {
-        console.log("repos = ", repos);
         this.setState({
             repos: repos
         })
     }
 
     setUserInfo(userInfo){
-        console.log("repos userInfo", userInfo);
         this.setState({
             data: userInfo
         })
             
-        console.log("repos userInfo.repos_url", userInfo.repos_url);
         if(userInfo.repos_url !== undefined){
-            console.log("userInfo.repos_url !== undefined", userInfo.repos_url !== undefined);
             fetch(userInfo.repos_url)
                 .then(res => res.json())
                 .then(
                 (result) => {
-                    console.log("repos result = ", result);
+                    // console.log("repos result = ", result);
                     if(result.message === "Not Found"){
                         
                     } else {
@@ -137,7 +123,7 @@ class Home extends Component {
                     }
                 },
                 (error) => {
-                    console.log("repos error = ", error);
+                    // console.log("repos error = ", error);
                 }) 
         } else if (result.message === "API rate limit exceeded for 176.62.6.130. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)"){
             userInfo = "An Error occured. Please try again."
@@ -146,12 +132,11 @@ class Home extends Component {
     }
 
     search = () => {
-        console.log("search", this.state.search);
         fetch('https://api.github.com/users/' + this.state.search)
             .then(res => res.json())
             .then(
             (result) => {
-                console.log("result = ", result);
+                // console.log("result = ", result);
                 if(result.message === "Not Found"){
                     this.setState({
                         data: []
@@ -173,7 +158,7 @@ class Home extends Component {
                 }
               },
               (error) => {
-                console.log("error = ", error);
+                // console.log("error = ", error);
               }) 
     }
 
@@ -185,8 +170,6 @@ class Home extends Component {
     }
 
     render() {
-        console.log("this.state = ", this.state);
-        console.log("this.props = ", this.props);
 
         let userInfo = null;
         let repos = [];
@@ -199,7 +182,6 @@ class Home extends Component {
                 Object.assign(repos, this.state.repos)
             });
             let counter = 0;
-            console.log("[render] repos = ", repos);
             repoList = repos.map(r => {
                 counter++;
                 return (
@@ -265,7 +247,6 @@ class Home extends Component {
                     onKeyDown={
                         (e) => {
                             if(e.key === "Enter"){
-                                console.log("ENTER");
                                 this.search();
                                 e.preventDefault();
                             }
