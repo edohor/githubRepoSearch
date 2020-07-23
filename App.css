@@ -77,10 +77,13 @@
 }
 
 .username, .email, .githubLink {
-    height: 70px;
-    margin: auto;
+    height: 30%;
+    margin: 0 auto;
     width: 100%;
     padding: 15px 5px 5px 5px;
+}
+.email {
+    margin-top: 40px;
 }
 
 .email *, .githubLink *{
@@ -92,7 +95,7 @@
     font-size: 1.5em;
     display: table-cell;
     vertical-align: middle;
-    padding-top: 0;
+    padding-top: 5px;
 }
 
 .repos {
@@ -139,7 +142,7 @@
 
     .userTile {
         width: 100%;
-        height: 430px;
+        height: 350px;
     }
 
     .profilePic {
@@ -156,5 +159,10 @@
 
     .repos{
         display: block;
+    }
+
+    .email, .githubLink {
+        margin-top: 0;
+        height: 8%;
     }
   }
