@@ -165,4 +165,10 @@
         margin-top: 0;
         height: 8%;
     }
-  }
+}
+
+@media only screen and (min-width: 1500px) {
+    .userTile {
+        width: 60%;
+    }
+}
