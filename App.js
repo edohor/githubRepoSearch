@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { withRouter, Switch, Route } from 'react-router-dom';
-import Home from './Home.js';
+import Home from './components/Home.js';
 
 class App extends Component {
 
@@ -19,7 +19,7 @@ class App extends Component {
     render() {
         return (
             <div className='App-div'>
-                <div className='title'>Edo Horvat - GitHub repository React App</div>
+                {/*<div className='title'>Edo Horvat - GitHub repository React App</div>*/}
                 <div className='content'>
                     <Switch>
                         <Route exact path={""} render={Home} />

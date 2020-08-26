@@ -1,7 +1,7 @@
 {
-  "name": "rimac-react-app",
+  "name": "github-repo-react-app",
   "version": "1.0.0",
-  "description": "rimac-react-app",
+  "description": "github-repo-react-app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,8 @@
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-table": "^7.5.0"
   },
   "devDependencies": {
     "serve": "^11.3.2"
