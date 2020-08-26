@@ -17,4 +17,5 @@ Possible improvements:
 - table hidden in mobile view (show only link to repo list) and reduce number of columns for smaller viewes (remove description or make repo name a link to remove link column)
 - add spinner of sorts and render all info on the page at once for larger list of repos
 - persist data locally
+- code architecture improvements (put files in folders, create and import separate files for individual components)
 - design improvements
