@@ -161,19 +161,23 @@
 
     .userTile {
         width: 100%;
-        height: 350px;
+        height: 470px;
+        padding: 0 10px;
     }
 
     .profilePic {
         display: block;
         position: relative;
-        margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
         text-align: center;
         max-height: 210px;
+        float: none;
     }
 
     .userDetail {
         display: block;
+        margin: 0;
     }
 
     .repos{
